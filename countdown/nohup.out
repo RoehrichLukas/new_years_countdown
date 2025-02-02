@@ -1,0 +1,13 @@
+libEGL warning: DRI2: failed to authenticate
+[1451:1451:1230/145401.297777:ERROR:gpu_init.cc(577)] Passthrough is not supported, GL is egl, ANGLE is 
+[1451:1451:1230/145401.402258:ERROR:viz_main_impl.cc(166)] Exiting GPU process due to errors during initialization
+[1477:7:1230/145401.646125:ERROR:command_buffer_proxy_impl.cc(132)] ContextResult::kTransientFailure: Failed to send GpuControl.CreateCommandBuffer.
+[1396:1396:1230/182400.118305:ERROR:gpu_process_host.cc(1002)] GPU process exited unexpectedly: exit_code=15
+Opening in existing browser session.
+libEGL warning: DRI2: failed to authenticate
+[2524:2524:1230/185406.790541:ERROR:gpu_init.cc(577)] Passthrough is not supported, GL is egl, ANGLE is 
+[2524:2524:1230/185406.921551:ERROR:viz_main_impl.cc(166)] Exiting GPU process due to errors during initialization
+libEGL warning: DRI2: failed to authenticate
+[2591:2591:1230/185407.639185:ERROR:gpu_init.cc(577)] Passthrough is not supported, GL is egl, ANGLE is 
+[2591:2591:1230/185407.742250:ERROR:viz_main_impl.cc(166)] Exiting GPU process due to errors during initialization
+[2553:8:1230/185408.010351:ERROR:command_buffer_proxy_impl.cc(132)] ContextResult::kTransientFailure: Failed to send GpuControl.CreateCommandBuffer.

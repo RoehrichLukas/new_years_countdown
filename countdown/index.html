@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Damn! It's 2025 already...</title>
+        <link rel="stylesheet" href="./flip/flip.min.css" />
+        <style>
+            /* General body styling */
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f8f9fa;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                gap: 2rem;
+                overflow: hidden;
+            }
+
+            /* Counter container styling */
+            .counter-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+                width: 100%;
+                max-width: 1000px;
+            }
+
+            /* Tick styling overrides */
+            .tick {
+                font-size: 2rem;
+                white-space: nowrap;
+                font-family: Arial, sans-serif;
+            }
+
+            .tick-flip,
+            .tick-text-inline {
+                font-size: 3rem; /* Make the countdown larger */
+            }
+
+            .tick-label {
+                font-size: 2rem; /* Make the labels larger */
+            }
+
+            .tick-char {
+                width: 2.5em; /* Increase the size of flip characters */
+            }
+
+            .tick-group {
+                margin: 0 0.5em;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- FIRST COUNTER -->
+        <div class="counter-container">
+            <div class="tick" data-did-init="handleTickInitCounter1">
+                <div data-repeat="true" data-layout="horizontal fit" data-transform="preset(d, h, m, s) -> delay">
+                    <div class="tick-group">
+                        <div data-key="value" data-repeat="true" data-transform="pad(00) -> split -> delay">
+                            <span data-view="flip"></span>
+                        </div>
+                        <span data-key="label" data-view="text" class="tick-label"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function handleTickInitCounter1(tick) {
+                var nextYear = new Date().getFullYear() + 1;	//getFullYear takes current year, +1 is next year
+
+                var counter = Tick.count.down(nextYear + "-01-01T00:00:00+01:00");   //1st Jan of next year, midnight ,+01:00 is the +1h time zone (CET)
+
+                counter.onupdate = function (value) {
+                    tick.value = value;
+                };
+
+                counter.onended = function () {
+                    console.log("First counter ended");
+                };
+            }
+        </script>
+
+        <!-- SECOND COUNTER -->
+        <div class="counter-container">
+            <div class="tick" data-did-init="handleTickInitCounter2">
+                <div data-repeat="true" data-layout="horizontal fit" data-transform="upper -> split -> delay(random, 100, 150)">
+                    <span data-view="flip" data-transform="ascii -> arrive -> round -> char(a-zA-Z!)" class="tick-char"></span>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function handleTickInitCounter2(tick) {
+                var rotation = ["Happy",
+                		" New ",
+                		"Year!",
+				];
+                var index = 0;
+
+                Tick.helper.interval(function () {
+                    tick.value = rotation[index];
+                    index = index < rotation.length - 1 ? index + 1 : 0;
+                }, 5000);
+            }
+        </script>
+
+	<script>
+	    // Array of 10 colors related to New Year's
+	    const fireworkColors = [
+		'#FF0000', // Red
+		'#FF6347', // Tomato
+		'#FFFF00', // Yellow
+		'#00FF00', // Lime Green
+		'#1E90FF', // Dodger Blue
+		'#FF1493', // Deep Pink
+		'#FFD700', // Gold
+		'#800080', // Purple
+		'#32CD32', // Lime
+		'#00FFFF'  // Cyan
+	    ];
+
+	    function createFirework() {
+		const firework = document.createElement('div');
+		firework.classList.add('firework');
+		
+		// Randomly select color from the array
+		const randomColor = fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
+		firework.style.backgroundColor = randomColor;
+
+		// Position the firework randomly
+		firework.style.top = Math.random() * 100 + '%';
+		firework.style.left = Math.random() * 100 + '%';
+		firework.style.animationDelay = Math.random() + 's';
+
+		// Append firework to body
+		document.body.appendChild(firework);
+
+		// Remove the firework after animation
+		setTimeout(() => firework.remove(), 2000);
+	    }
+
+	    // Generate fireworks periodically
+	    setInterval(createFirework, 500);
+	</script>
+
+        <script src="./flip/flip.min.js"></script>
+    </body>
+</html>
